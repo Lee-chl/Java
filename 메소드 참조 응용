@@ -1,0 +1,33 @@
+public class MethodRefDemo {
+	public static void main(String[] arrgs) {
+		//System.out::println 은 정적메소드 참조
+		Showable s = System.out::println;
+		// s= str -> System.out.println(str);
+		s.show("잘 있어");
+		
+		Utils u = new Utils();
+		
+		// u::add는 인스턴스 메서드 참조
+		Operable o = u::add;
+		// o = (x,y) -> u.add(x,y);
+		System.out.println(o.operator(20, 30));
+		
+		//String::charAt 는 인스턴스메소드 참조
+		Pickable p = String::charAt;
+		//p= (x,y ) -> x.charAt(y);
+		System.out.println(p.pick("여보세요",2));
+		
+		//String::new 는 생성자 참조
+		NewString n = String::new;
+		// n = x -> new String(x);
+		System.out.println(n.getString("사과"));
+		
+		//int[]::new 는 배열 생성자 참조
+		IntArray a = int[]::new;
+		// a = x-> new int[x];
+		int[] array = a.getArray(2);
+		array[0] =0;
+		array[1]=1;
+	}
+
+}
