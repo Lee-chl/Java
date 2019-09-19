@@ -1,0 +1,28 @@
+package chapter08;
+
+public class Annoymous1Demo {
+	//e는 Annonymos1Demo 클래스의 멤버 필드이다.
+	Bird e = new Bird() {
+		
+		//Bird클래스의 move()메서드를 오버라이딩한다.
+		public void move() {
+			System.out.println("독수리가 난다~~~~~");	
+		}
+		
+		//무명클래스의 메서드로 정의했지만 Bird타입의 객체로는 접근할수 없다.
+		 void sound() {
+			 System.out.println("휘익~~~");
+		 }
+		
+	};
+	
+	public static void main(String [] args) {
+		Annoymous1Demo a = new Annoymous1Demo();
+		//다형성으로 오버라이딩한 메서드를 호출
+		a.e.move();
+		
+		//a,e 객체가 Bird타입이므로 sound()메서드를 호출 할수 없다.
+		//a.e.sound();
+	}
+
+}
