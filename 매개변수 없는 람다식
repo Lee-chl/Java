@@ -1,0 +1,17 @@
+//함수형 인터페이스
+interface Printable{
+	void print();
+}
+
+public class Lambda3Demo {
+	public static void main(String[] args) {
+		Printable p;
+		//매개변수가 없기 때문에 빈 괄호가 반드시 있어야한다.
+		p = () ->{
+			System.out.println("안녕!");
+		};
+		p = () -> System.out.println("안녕!");
+		p.print();
+	}
+
+}
