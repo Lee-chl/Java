@@ -1,0 +1,24 @@
+//함수형 인터페이스
+interface Negative{
+	int neg(int x);
+}
+
+public class Lambda2Demo {
+	public static void main(String[] args) {
+		Negative n;
+		//모두 동일한 의미의 람다식 표현이다.
+		n = (int x) -> {
+			return -x;
+		};
+		n= (x) -> {
+			return -x;
+		};
+		n = x -> {
+			return -x;
+		};
+		n = (int x) -> -x;
+		n=(x) -> -x;
+		n=x-> -x;
+	}
+
+}
