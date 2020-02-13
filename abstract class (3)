@@ -1,0 +1,28 @@
+public class Avante extends Car{
+
+	public void start() {
+		System.out.println( "  Avante 의 시동을 겁니다.");
+	}
+
+	@Override
+	public void drive() {
+		System.out.println( "  Avante 를 운전합니다.");
+	}
+
+	@Override
+	public void stop() {
+		System.out.println(" Avante를 멈춥니다.");
+	}
+
+	@Override
+	public void turnoff() {
+		System.out.println(" Avante의 시동을 끕니다.");
+	}
+
+	@Override
+	public void showCar() {
+		System.out.println("이 차는 Avante 입니다.");
+	}
+	
+
+}
