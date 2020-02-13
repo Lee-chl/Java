@@ -1,0 +1,23 @@
+public class CarTest {
+	public static void main(String[] args) {
+		Sonata sona = new Sonata();
+		Grandeur g = new Grandeur();
+		Avante a = new Avante();
+		Genesis ge = new Genesis();
+		
+		sona.showCar();
+		sona.run();
+		
+		g.showCar();
+		g.run();
+		
+		a.showCar();
+		a.run();
+		
+		ge.showCar();
+		ge.run();
+		
+		
+	}
+
+}
