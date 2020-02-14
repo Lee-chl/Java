@@ -1,0 +1,19 @@
+public class HeaSort implements Sort{
+
+	@Override
+	public void ascedning() {
+		System.out.println("HeapSort ascending");
+	}
+
+	@Override
+	public void descending() {
+		System.out.println("HeapSort descending");
+		
+	}
+	
+	public void showInfo() {
+		System.out.println("HeapSort 입니다. ");
+	}
+	
+
+}
