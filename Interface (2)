@@ -1,0 +1,20 @@
+public class QuickSort implements Sort{
+
+	@Override
+	public void ascedning() {
+		System.out.println("QuickSort ascending");
+	}
+
+	@Override
+	public void descending() {
+		System.out.println("QuickSort descending");
+		
+	}
+	public void showInfo() {
+		System.out.println("QuickSort 입니다.");
+	}
+	
+	
+	
+
+}
