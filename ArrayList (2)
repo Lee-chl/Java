@@ -1,0 +1,40 @@
+package chapter06;
+
+import java.util.ArrayList;
+
+public class Student {
+	public String studentname;
+	
+	//Book 클래스 타입의 ArrayList를 사용하기 위해 변수 선언
+	ArrayList<Book> bookList;
+	
+	
+	public Student(String studentname) {
+		this.studentname = studentname;
+		
+		//bookList 라는 객체 선언 나중에 테스트 클래스에서 쓰고 싶기 때문에
+		bookList = new ArrayList<Book>();
+		
+	}
+	
+	public void addBook(String bookname) {
+		// 객체 생성( 여기서 쓰고 싶어서)
+		Book book = new Book(bookname);
+		bookList.add(book);
+		
+	}
+	
+	public void showStudentInfo() {
+		System.out.print(studentname+" 학생이 읽은 책은 " );
+		for(Book book :bookList) {
+			//getBookname을 쓰지 않으면 주소로 보여진다.
+			System.out.print(book.getBookname()+", ");
+		}
+		System.out.println("입니다.");
+	}
+	
+	
+
+	
+
+}
