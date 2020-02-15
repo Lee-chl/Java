@@ -1,0 +1,27 @@
+public class StudentTest {
+	public static void main(String[] args) {
+		Student studentLee = new Student("Leesanho");
+		
+		studentLee.addBook("이상한 나라의 앨리스");
+		studentLee.addBook("작은 아씨들");
+		studentLee.addBook("빨간 머리 앤");
+		
+		Student studentKim = new Student("Kimkilhan");
+		studentKim.addBook("이솝우화");
+		studentKim.addBook("빨간 구두");
+		studentKim.addBook("개미와 베짱이");
+		
+		Student studentCho = new Student("Chohan");
+		studentCho.addBook("제인 에어");
+		studentCho.addBook("키다리 아저씨");
+		studentCho.addBook("바람과 함께 사라지다");
+		
+		
+		studentLee.showStudentInfo();
+		studentKim.showStudentInfo();
+		studentCho.showStudentInfo();
+		
+			
+	}
+
+}
