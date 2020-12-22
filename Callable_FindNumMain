@@ -1,0 +1,38 @@
+package findPrimeNumber09;
+
+import java.io.*; 
+import java.util.Scanner;
+import java.util.concurrent.*;
+
+public class FindPrimeNumMain {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.print("Enter a number : ");
+		int n = s.nextInt();
+		//m은 스레드 수
+		int m = s.nextInt();
+		//생성할 스레드 수 , 스레드 풀의 사이즈
+		int threadNum = s.nextInt();
+		String targetFilePath = "Materials/primeNum.txt";
+		if(new File(targetFilePath).exists()) new File(targetFilePath).delete();
+		//생성자 
+		MargeContentsIntoSingleFile mcis = new MargeContentsIntoSingleFile();
+		FindPrimeNum[] fpn = new FindPrimeNum[m];
+		//thread pool 생성
+//		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(threadNum);
+		ExecutorService executor = Executors.newFixedThreadPool(threadNum);
+		int startNum, endNum;
+		for(int i=0; i<m; i++) {
+			startNum = (n/m)*i+1;
+			endNum = startNum +(n/m);
+			fpn[i] = new FindPrimeNum(mcis,targetFilePath,startNum,endNum,20);
+			//callable 이여서 오류남 안에꺼가 밖에꺼는 runnable
+//			executor.execute(fpn[i]);
+			executor.submit(fpn[i]);
+		}
+		executor.shutdown();
+		s.close();
+	}
+
+}
