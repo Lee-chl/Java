@@ -1,0 +1,82 @@
+package findPrimeNumber09;
+
+
+import java.util.concurrent.Callable;
+
+public class FindPrimeNum implements Callable<String> {
+	
+	//멤버필드
+	MargeContentsIntoSingleFile mcis;
+	String targetFilePath;
+	int n, m , printNum;
+	//멤버 필드 초기화 하는 생성자
+	public FindPrimeNum(MargeContentsIntoSingleFile mcis,String targetFilePath, int n, int printNum) {
+		this.mcis = mcis;
+		this.targetFilePath = targetFilePath;
+		this.n = n;
+		this.printNum = printNum;
+	}
+	public FindPrimeNum(MargeContentsIntoSingleFile mcis,String targetFilePath , int n, int m, int printNum) {
+		this.mcis = mcis;
+		this.targetFilePath = targetFilePath;
+		this.n = n;
+		this.m = m;
+		this.printNum = printNum;
+	}
+	
+	public boolean isPrime(int n) {
+		if(n <= 1) {
+			return false;
+		}
+		//sqrt는 루트씌우는것
+		for (int i = 2; i < Math.sqrt(n); i++) {
+			if(n % i ==0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	//매개변수에 들어갈 변수(인자)는 멤버필드로 지정하였기에 매개변수가 없다
+	public StringBuffer getPrimeNum() {
+		//스레드이름 네임으로 받기
+		String name = Thread.currentThread().getName();
+		StringBuffer strBuffer = new StringBuffer();
+		String str;
+		int checkPrintNum=0;
+		int startNum, endNum;
+		//m이 없을 경우 대비(한 수만 출력할 경우)
+		if(m == 0) {
+			startNum = 1;
+			endNum=n;
+		}
+		else {
+			startNum = n;
+			endNum=m;
+		}
+		for(int i=startNum; i<=endNum; i++) {
+			if(isPrime(i)) {
+				checkPrintNum++;
+				if(checkPrintNum <= printNum) {
+					str = (checkPrintNum == 1)? name + " " + i + " " : " "+i+" ";
+				}
+				else {
+					str = System.lineSeparator();
+					checkPrintNum=0;
+				}
+				strBuffer.append(str);
+			}
+		}
+		return strBuffer;
+	}
+  //Callable 사용시 꼭 call() 사용해야한다.
+	@Override
+	public String call() {
+		mcis.makeSingleParagraphFile(targetFilePath, getPrimeNum().toString());
+		System.out.println(targetFilePath + " was created by"+ Thread.currentThread().getName());
+		return "Done";
+		
+	}
+	
+
+}
