@@ -1,0 +1,32 @@
+package readFiles04;
+
+import java.util.concurrent.*;
+
+public class ReadFilesTest {
+
+	public static void main(String[] args) {
+		String fileTitle = "읽을 파일이름";
+		String targetFilePath;
+		ReadFiles[] rf = new ReadFiles[5];
+		//thread pool 생성(5개 스레드를 담을 수 있는) / 스레드수를 지정(통제)할 수 있다. 
+		//두개의 스레드가 다섯개의 작업을 하게 할 수 있다.(재사용 / 멀티스레딩)
+		ExecutorService executor = Executors.newFixedThreadPool(5);
+		//Future 객체 선언
+		Future<String> future;
+		for(int i=0;i<5;i++) {
+			targetFilePath = fileTitle + (i+1) +".txt";
+			rf[i] = new ReadFiles(targetFilePath);
+			//작업등록, Future 객체 획득
+			future = executor.submit(rf[i]);
+			try {
+				System.out.println(future.get());
+			}catch(InterruptedException ie) { }
+			catch(ExecutionException e) { }
+		}
+		//스레드 풀 소멸
+		executor.shutdown();
+		
+
+	}
+
+}
