@@ -1,0 +1,50 @@
+package readFiles04;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.concurrent.*;
+
+
+
+public class ReadFiles implements Callable<String>{
+	
+	private String targetFilePath;
+	private StringBuffer contentsTemp, contents;
+	
+	public ReadFiles(String targetFilePath) {
+		this.targetFilePath=targetFilePath;
+		}
+	
+	//파일을 읽어 contents StringBuffer에 담는다.
+	public void readSingleParagraph(String targetFilePath) {
+		
+		try(BufferedReader reader = new BufferedReader(new FileReader(targetFilePath));)
+		{
+			String temp;
+			contentsTemp = new StringBuffer();
+			//현재 스레드 이름 담기(반환)
+			String threadName = Thread.currentThread().getName();
+			contentsTemp.append(threadName+System.lineSeparator());
+			while((temp = reader.readLine()) != null) {
+				contentsTemp.append(temp+System.lineSeparator());
+			}
+		}catch(IOException ioe) {
+			//Do nothing
+		}
+		//feed contents StringBuffer after it read all
+		contents = contentsTemp;
+	}
+
+	
+	public StringBuffer getContents() {
+		return this.contents;
+	}
+
+	@Override
+	public String call() throws Exception {
+		readSingleParagraph(targetFilePath);
+		return contents.toString();
+	}
+
+}
