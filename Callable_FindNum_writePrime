@@ -1,0 +1,22 @@
+package findPrimeNumber09;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+//writePrime 메소드를 클래스로 만들기
+public class MargeContentsIntoSingleFile {
+	
+	public synchronized void makeSingleParagraphFile(String mergedFilePath,String contents) {
+		
+		try(BufferedWriter witer = new BufferedWriter(new FileWriter(mergedFilePath,true));)
+		{
+			witer.write(contents);
+			witer.flush();
+		} catch (IOException ioe) {
+			// Do nothing
+		}
+	}
+	
+
+}
